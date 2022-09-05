@@ -1,0 +1,17 @@
+category Id:
+{{category._id}}
+<div class="container" style="max-width: 95%;font-size:1.7rem;">
+  <form action="/categories/{{category._id}}/delete" method="post">
+    <div class="title">category</div>
+    <div class="input-box" style="height:auto;">
+      <h2>Name: </h2>
+      {{category.name}}
+    </div>
+    <div class="input-box" style="height: auto">
+      <h3>Description:</h3>
+      {{category.description}}
+    </div>
+    <button class="primary">Delete </button>
+  </form>
+  <a href="/categories" class="button">Cancel</a>
+</div>

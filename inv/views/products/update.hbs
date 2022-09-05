@@ -1,0 +1,56 @@
+product Id:
+{{product._id}}
+<div class="container" style="max-width: 95%;">
+  <div class="error">
+    {{error}}
+  </div>
+  <form action="/products/{{product._id}}/update/confirm" method="post">
+    <div class="title">product</div>
+    <div class="input-box">
+      <input
+        type="text"
+        name="name"
+        value="{{product.name}}"
+        placeholder="Title"
+        required
+      />
+      <div class="underline"></div>
+    </div>
+    <div id="txtArea" style="border-bottom: 2px solid #ccc;">
+      <textarea
+        id="txtArea"
+        rows="3"
+        cols="50"
+        style="font-size:16px;font: 16px 'Lucida Grande', Helvetica, Arial, sans-serif; width:100%; height:auto;"
+        name="description"
+        placeholder="Description"
+        style="color: #767676;"
+        required
+      >{{product.description}} </textarea>
+
+      <div class="underline"></div>
+    </div>
+    <div class="input-box">
+      <input
+        type="text"
+        name="category"
+        placeholder="Category"
+        value="{{product.category}}"
+        required
+      />
+      <div class="underline"></div>
+    </div>
+    <div class="input-box">
+      <input
+        type="text"
+        name="price"
+        placeholder="Price"
+        value="{{product.price}}"
+        required
+      />
+      <div class="underline"></div>
+    </div>
+    <button class="primary">Update</button>
+  </form>
+  <a href="/products" class="button">Cancel</a>
+</div>

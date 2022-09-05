@@ -1,0 +1,38 @@
+<div class="container" style="max-width: 95%;">
+  <div class="error">
+    {{error}}
+  </div>
+  <form action="/products/create" method="post">
+    <div class="title">Product</div>
+    <div class="input-box">
+      <input type="text" name="name" placeholder="Name" required />
+      <div class="underline"></div>
+    </div>
+    <div id="txtArea" style="border-bottom: 2px solid #ccc;">
+      <textarea
+        id="txtArea"
+        rows="3"
+        cols="50"
+        style="font-size:16px;font: 16px 'Lucida Grande', Helvetica, Arial, sans-serif; width:100%; height:auto;"
+        name="description"
+        placeholder="Description"
+        style="color: #767676;"
+        required
+      ></textarea>
+
+      <div class="underline"></div>
+    </div>
+    <div class="input-box">
+      <input type="text" name="category" placeholder="Category" required />
+      <div class="underline"></div>
+    </div>
+    <div class="input-box">
+      US $<input type="number" name="price" placeholder="Price" required />
+      <div class="underline"></div>
+    </div>
+    <button class="primary">Create </button>
+  </form>
+  {{! <button onclick="window.location.href= '/resumes">Cancel</button> }}
+  <a href="/resumes" class="button">Cancel</a>
+  {{! </button> }}
+</div>

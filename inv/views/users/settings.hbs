@@ -1,0 +1,56 @@
+<div class="accounts_bg">
+  <div class="container">
+    <div class="error">
+      {{error}}
+    </div>
+    <form action="/accounts/register" method="post">
+      <div class="title">Profile</div>
+      {{! <div class="input-box">
+        <input type="text" name="full_name" placeholder="Full Name" required />
+        <div class="underline"></div>
+      </div> }}
+      <div class="input-box">
+        <input
+          type="text"
+          name="username"
+          placeholder="{{user.username}}"
+          readonly
+        />
+        <div class="underline"></div>
+      </div>
+      <div class="underline"></div>
+      <div><h5>UserName</h5></div>
+      <div class="input-box">
+        <input
+          type="email"
+          name="email"
+          placeholder="{{user.email}}"
+          required
+        />
+        <div class="underline"></div>
+      </div>
+      {{! <div class="input-box">
+        <input type="phone" name="phone" placeholder="Phone Number" required />
+        <div class="underline"></div>
+      </div> }}
+      <div class="underline"></div>
+      <div><h5>Email</h5></div>
+      <div class="input-box">
+        <input
+          type="password"
+          name="password"
+          placeholder="{{user.password}}"
+          required
+        />
+        <div class="underline"></div>
+      </div>
+      <div><h5>Change Password</h5></div>
+      <div class="input-box">
+        <input type="password" name="confirmPassword" placeholder="" required />
+        <div class="underline"></div>
+      </div>
+      <div><h5>Confirm Password</h5></div>
+      <button>Change</button>
+    </form>
+  </div>
+</div>

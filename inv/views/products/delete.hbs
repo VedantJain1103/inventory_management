@@ -1,0 +1,25 @@
+Product Id:
+{{product._id}}
+<div class="container" style="max-width: 95%;font-size:1.7rem;">
+  <form action="/products/{{product._id}}/delete/confirm" method="post">
+    <div class="title">Product</div>
+    <div class="input-box" style="height:auto;">
+      <h2>Name: </h2>
+      {{product.name}}
+    </div>
+    <div class="input-box" style="height: auto">
+      <h3>Description:</h3>
+      {{product.description}}
+    </div>
+    <div class="input-box" style="height: auto">
+      <h3>Category:</h3>
+      {{product.category}}
+    </div>
+    <div class="input-box" style="height: auto">
+      <h3>Price:</h3>
+      US ${{product.price}}
+    </div>
+    <button class="primary">Delete </button>
+  </form>
+  <a href="/products" class="button">Cancel</a>
+</div>

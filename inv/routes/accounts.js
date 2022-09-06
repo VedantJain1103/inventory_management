@@ -25,16 +25,17 @@ router.get('/logOut', async (req, res) => {
 
 router.post('/register', async (req, res) => {
     const { email } = req.body;
-    const { phone } = req.body;
     const userName = req.body.username;
-    const fullName = req.body.full_name;
     const { password } = req.body;
     const { confirmPassword } = req.body;
 
     try {
-        accountsServices.createUser(userName, email, confirmPassword);
-        res.render('accounts/sign_in', { error: 'Successfully registered. Please sign in to continue.' });
+        if (password != confirmPassword) res.render('accounts/register', { error: err.message });
+        const re = await accountsServices.createUser(userName, email, confirmPassword);
+        if (re == "Email or Username already exists") res.render('accounts/register', { error: 'Email or Username already exists' });
+        else res.redirect('/accounts/sign_in');
     } catch (err) {
+        console.log("===============");
         res.render('accounts/register', { error: err.message });
     }
 });

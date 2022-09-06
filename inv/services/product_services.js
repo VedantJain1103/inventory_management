@@ -40,10 +40,10 @@ async function addProduct(username, name, category, price, description) {
     }
 }
 
-async function updateProduct(id, name, category, price, description) {
+async function updateProduct(id, name, category, price, description, username) {
     try {
         const filter = {
-            _id: id
+            _id: ObjectId(id)
         }
         const upd = {
             $set: {
@@ -53,11 +53,12 @@ async function updateProduct(id, name, category, price, description) {
                 description: description
             }
         }
-        const op = {
-            upsert: true
+        const result = await Products.updateOne(filter, upd);
+        const cat = await Categories.findOne({ username: username, name: category });
+        if (!cat) {
+            await Categories.insertOne({ username: username, name: category });
         }
-        const result = await Products.updateOne(filter, upd, op);
-        console.log(result);
+        // console.log(result);
     } catch (err) {
         throw err;
     }

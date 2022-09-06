@@ -6,16 +6,18 @@ const database = client.db("InventoryManagement");
 const Users = database.collection("Users");
 const Sessions = database.collection("Sessions");
 
-async function updateUser(userName) {
+async function updateUser(userName, email, password) {
     try {
-        const updateUser = await Users.findByIdAndUpdate(
-            userName,
-            { $set: req.body },
-            { new: true }
-        )
-        res.status(200).json(updateUser);
+        const user = Users.findOne({ username: userName });
+        if (password) {
+            if (user.password == password) return "changePass";
+            const upd = Users.updateOne({ username: userName }, { $set: { email: email, password: password } });
+        }
+        else {
+            const upd = Users.updateOne({ username: userName }, { $set: { email: email } });
+        }
     } catch (err) {
-        next(err);
+        throw (err);
     }
 }
 
@@ -44,13 +46,13 @@ async function getUser(userName) {
 
 async function createUser(userName, email, password) {
     try {
-        const newUser = {
-            username: userName,
-            email: email,
-            password: password
-        };
-        const result = await Users.insertOne(newUser);
-        console.log(result);
+        const q1 = Users.findOne({ username: userName });
+        const q2 = Users.findOne({ email: email });
+        if (q1 || q1) {
+            return "Email or Username already exists";
+        }
+        const result = await Users.insertOne({ username: userName, email: email, password: password });
+        // console.log(result);
     } catch (err) {
         next(err);
     }

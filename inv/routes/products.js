@@ -138,7 +138,7 @@ router.post('/:productId/update/confirm', async (req, res) => {
         const { description } = req.body;
         const { category } = req.body;
         const { price } = req.body;
-        await productServices.updateProduct(req.params.productId, name, category, price, description);
+        await productServices.updateProduct(req.params.productId, name, category, price, description, username);
         res.redirect('/products');
     } catch (err) {
         console.error(err);

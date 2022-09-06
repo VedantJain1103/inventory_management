@@ -1,9 +1,9 @@
 <div class="accounts_bg">
   <div class="container">
     <div class="error">
-      {{error}}
+      {{err}}
     </div>
-    <form action="/accounts/register" method="post">
+    <form action="/users/update" method="post">
       <div class="title">Profile</div>
       {{! <div class="input-box">
         <input type="text" name="full_name" placeholder="Full Name" required />
@@ -24,6 +24,7 @@
         <input
           type="email"
           name="email"
+          value="{{user.email}}"
           placeholder="{{user.email}}"
           required
         />
@@ -37,16 +38,16 @@
       <div><h5>Email</h5></div>
       <div class="input-box">
         <input
-          type="password"
+          type="text"
           name="password"
+          value=""
           placeholder="{{user.password}}"
-          required
         />
         <div class="underline"></div>
       </div>
       <div><h5>Change Password</h5></div>
       <div class="input-box">
-        <input type="password" name="confirmPassword" placeholder="" required />
+        <input type="text" name="confirmPassword" placeholder="" />
         <div class="underline"></div>
       </div>
       <div><h5>Confirm Password</h5></div>

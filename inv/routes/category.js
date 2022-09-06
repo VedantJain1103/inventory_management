@@ -53,7 +53,8 @@ router.post('/:category_id/update', async (req, res) => {
     try {
         const currentUser = await accountsServices.isLoggedIn(req.cookies.userName);
         const user = await accountsServices.getUser(currentUser);
-        const username = user.userName;
+        if (user == null) res.redirect('accounts/sign_in');
+        const username = user.username;
         id = req.params.category_id;
         const { name } = req.body;
         const { description } = req.body;
@@ -83,7 +84,8 @@ router.post('/:category_id/delete', async (req, res) => {
     try {
         const currentUser = await accountsServices.isLoggedIn(req.cookies.userName);
         const user = await accountsServices.getUser(currentUser);
-        const username = user.userName;
+        if (user == null) res.redirect('accounts/sign_in');
+        const username = user.username;
         id = req.params.category_id;
         const category = await categoryServices.getCategory(id);
         console.log(category);

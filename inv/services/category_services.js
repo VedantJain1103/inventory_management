@@ -62,14 +62,16 @@ async function updateCategory(id, username, cname, description) {
         const query = {
             _id: ObjectId(id)
         };
-        const options = { upsert: true };
+        const cat = await Categories.findOne({ _id: ObjectId(id) });
+        const oldName = cat.name;
         const updateDoc = {
             $set: {
                 name: cname,
                 description: description
             },
         };
-        const result = await Categories.updateOne(query, updateDoc, options);
+        const result = await Categories.updateOne(query, updateDoc);
+        const result2 = await Products.updateMany({ username: username, category: oldName }, { $set: { category: cname } });
     } catch (err) {
         throw err;
     }
@@ -97,6 +99,7 @@ async function deleteCategory(id, username, cname) {
         const query = {
             _id: ObjectId(id)
         };
+        console.log(username, " ", cname);
         const query2 = {
             username: username,
             category: cname

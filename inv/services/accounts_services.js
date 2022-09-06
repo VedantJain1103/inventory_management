@@ -46,15 +46,15 @@ async function getUser(userName) {
 
 async function createUser(userName, email, password) {
     try {
-        const q1 = Users.findOne({ username: userName });
-        const q2 = Users.findOne({ email: email });
-        if (q1 || q1) {
+        const q1 = await Users.findOne({ username: userName });
+        const q2 = await Users.findOne({ email: email });
+        if (q1 || q2) {
             return "Email or Username already exists";
         }
         const result = await Users.insertOne({ username: userName, email: email, password: password });
-        // console.log(result);
+        console.log(result);
     } catch (err) {
-        next(err);
+        throw (err);
     }
 }
 async function signIn(userName, password) {
